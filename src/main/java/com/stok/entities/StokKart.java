@@ -9,17 +9,17 @@ import java.util.Date;
 public class StokKart {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column(name = "stok_kodu")
     private String stokKodu;
 
     @Column(name = "stok_adi")
-    private Integer stokAdi;
+    private String stokAdi;
 
     @Column(name = "barkod")
-    private Integer barkod;
+    private String barkod;
 
     @Column(name = "grup_kodu")
     private Integer grupKodu;
@@ -30,11 +30,11 @@ public class StokKart {
     @Column(name = "olusturma_tarihi")
     private Date olusturmaTarihi;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -46,19 +46,19 @@ public class StokKart {
         this.stokKodu = stokKodu;
     }
 
-    public Integer getStokAdi() {
+    public String getStokAdi() {
         return stokAdi;
     }
 
-    public void setStokAdi(Integer stokAdi) {
+    public void setStokAdi(String stokAdi) {
         this.stokAdi = stokAdi;
     }
 
-    public Integer getBarkod() {
+    public String getBarkod() {
         return barkod;
     }
 
-    public void setBarkod(Integer barkod) {
+    public void setBarkod(String barkod) {
         this.barkod = barkod;
     }
 

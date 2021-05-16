@@ -5,27 +5,33 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "belge")
-public class Belge {
+@Table(name = "belgedetay")
+public class BelgeDetay {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "depo_kodu")
-    private Integer depoKodu;
+    @Column(name = "stok_kodu")
+    private Integer stokKodu;
 
-    @Column(name = "belge_no")
-    private Integer belgeNo;
+    @Column(name = "barkod")
+    private Integer barkod;
 
-    @Column(name = "firma_no")
-    private Integer firmaNo;
+    @Column(name = "adet")
+    private Integer adet;
 
-    @Column(name = "belge_tarihi")
-    private Date belgeTarihi;
+    @Column(name = "birim_fiyat")
+    private Double birimFiyat;
 
-    @Column(name = "tur")
-    private Integer tur;
+    @Column(name = "birim_tutar")
+    private Double birimTutar;
+
+    @Column(name = "toplam_tutar")
+    private Double toplamTutar;
+
+    @Column(name = "olusturan_kullanici")
+    private String olusturanKullanici;
 
     @Column(name = "olusturma_tarihi")
     private Date olusturmaTarihi;
@@ -38,44 +44,60 @@ public class Belge {
         this.id = id;
     }
 
-    public Integer getDepoKodu() {
-        return depoKodu;
+    public Integer getStokKodu() {
+        return stokKodu;
     }
 
-    public void setDepoKodu(Integer depoKodu) {
-        this.depoKodu = depoKodu;
+    public void setStokKodu(Integer stokKodu) {
+        this.stokKodu = stokKodu;
     }
 
-    public Integer getBelgeNo() {
-        return belgeNo;
+    public Integer getBarkod() {
+        return barkod;
     }
 
-    public void setBelgeNo(Integer belgeNo) {
-        this.belgeNo = belgeNo;
+    public void setBarkod(Integer barkod) {
+        this.barkod = barkod;
     }
 
-    public Integer getFirmaNo() {
-        return firmaNo;
+    public Integer getAdet() {
+        return adet;
     }
 
-    public void setFirmaNo(Integer firmaNo) {
-        this.firmaNo = firmaNo;
+    public void setAdet(Integer adet) {
+        this.adet = adet;
     }
 
-    public Date getBelgeTarihi() {
-        return belgeTarihi;
+    public Double getBirimFiyat() {
+        return birimFiyat;
     }
 
-    public void setBelgeTarihi(Date belgeTarihi) {
-        this.belgeTarihi = belgeTarihi;
+    public void setBirimFiyat(Double birimFiyat) {
+        this.birimFiyat = birimFiyat;
     }
 
-    public Integer getTur() {
-        return tur;
+    public Double getBirimTutar() {
+        return birimTutar;
     }
 
-    public void setTur(Integer tur) {
-        this.tur = tur;
+    public void setBirimTutar(Double birimTutar) {
+        this.birimTutar = birimTutar;
+    }
+
+    public Double getToplamTutar() {
+        return toplamTutar;
+    }
+
+    public void setToplamTutar(Double toplamTutar) {
+        this.toplamTutar = toplamTutar;
+    }
+
+    public String getOlusturanKullanici() {
+        return olusturanKullanici;
+    }
+
+    public void setOlusturanKullanici(String olusturanKullanici) {
+        this.olusturanKullanici = olusturanKullanici;
     }
 
     public Date getOlusturmaTarihi() {

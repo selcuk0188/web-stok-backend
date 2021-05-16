@@ -6,30 +6,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
-@RestController("/belge")
-public class BelgeController {
+@RestController("/belge-detay")
+public class BelgeDetayController {
 
     @Autowired
-    private BelgeService belgeService;
+    private BelgeDetayService belgeDetayService;
 
     @RequestMapping(value = "/listele", method = RequestMethod.POST)
-    public BelgeListResponse getBelgeList(@RequestParam("belgeNo") Integer belgeNo) {
-        return belgeService.getBelgeList(belgeNo);
+    public BelgeDetayListResponse getBelgeDetayList(@RequestParam("stokKodu") Integer stokKodu) {
+        return belgeDetayService.getBelgeDetayList(stokKodu);
     }
 
     @RequestMapping(value = "/kayit", method = RequestMethod.POST)
-    public BelgeKayitResponse save(@RequestBody BelgeRequest request) {
-        return belgeService.save(request);
+    public BelgeDetayKayitResponse save(@RequestBody BelgeDetayRequest request) {
+        return belgeDetayService.save(request);
     }
 
     @RequestMapping(value = "/guncelle", method = RequestMethod.POST)
-    public BelgeGuncelleResponse update(@RequestBody BelgeRequest request) {
-        return belgeService.update(request);
+    public BelgeDetayGuncelleResponse update(@RequestBody BelgeDetayRequest request) {
+        return belgeDetayService.update(request);
     }
 
     @RequestMapping(value = "/sil", method = RequestMethod.POST)
-    public BelgeSilResponse delete(@RequestParam("belgeId") Integer belgeId) {
-        return belgeService.delete(belgeId);
+    public BelgeDetaySilResponse delete(@RequestParam("belgeDetayId") Integer belgeDetayId) {
+        return belgeDetayService.delete(belgeDetayId);
     }
 
 }

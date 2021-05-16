@@ -1,7 +1,7 @@
 package com.stok.repository;
 
-import com.stok.entities.Depo;
+import com.stok.entities.Belge;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface DepoRepository extends JpaRepository<Depo, Integer> {
+public interface BelgeRepository extends JpaRepository<Belge, Integer> {
 }

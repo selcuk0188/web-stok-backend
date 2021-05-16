@@ -1,2 +1,4 @@
-package com.stok.model;public class BelgeDetayListResponse {
+package com.stok.model;
+
+public class BelgeDetayListResponse {
 }

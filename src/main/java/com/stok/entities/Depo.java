@@ -5,12 +5,12 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "DEPO")
+@Table(name = "depo")
 public class Depo {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(name = "depo_adi")
     private String depoAdi;
@@ -24,11 +24,11 @@ public class Depo {
     @Column(name = "olusturma_tarihi")
     private Date olusturmaTarihi;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

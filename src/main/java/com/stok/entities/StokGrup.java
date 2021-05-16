@@ -10,19 +10,19 @@ public class StokGrup {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
-    @Column(name = "grup_adi")
+    @Column(name = "depo_adi")
     private String depoAdi;
 
     @Column(name = "grup_kodu")
     private Integer depoKodu;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

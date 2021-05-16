@@ -1,2 +1,4 @@
-package com.stok.model;public class BelgeRequest {
+package com.stok.model;
+
+public class BelgeRequest {
 }

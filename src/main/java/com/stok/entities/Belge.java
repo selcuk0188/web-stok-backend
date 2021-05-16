@@ -5,27 +5,27 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "STOKKART")
-public class StokKart {
+@Table(name = "belge")
+public class Belge {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "stok_kodu")
-    private String stokKodu;
+    @Column(name = "depo_kodu")
+    private Integer depoKodu;
 
-    @Column(name = "stok_adi")
-    private String stokAdi;
+    @Column(name = "belge_no")
+    private Integer belgeNo;
 
-    @Column(name = "barkod")
-    private String barkod;
+    @Column(name = "firma_no")
+    private Integer firmaNo;
 
-    @Column(name = "grup_kodu")
-    private Integer grupKodu;
+    @Column(name = "belge_tarihi")
+    private Date belgeTarihi;
 
-    @Column(name = "durum")
-    private Integer durum;
+    @Column(name = "tur")
+    private Integer tur;
 
     @Column(name = "olusturma_tarihi")
     private Date olusturmaTarihi;
@@ -38,44 +38,44 @@ public class StokKart {
         this.id = id;
     }
 
-    public String getStokKodu() {
-        return stokKodu;
+    public Integer getDepoKodu() {
+        return depoKodu;
     }
 
-    public void setStokKodu(String stokKodu) {
-        this.stokKodu = stokKodu;
+    public void setDepoKodu(Integer depoKodu) {
+        this.depoKodu = depoKodu;
     }
 
-    public String getStokAdi() {
-        return stokAdi;
+    public Integer getBelgeNo() {
+        return belgeNo;
     }
 
-    public void setStokAdi(String stokAdi) {
-        this.stokAdi = stokAdi;
+    public void setBelgeNo(Integer belgeNo) {
+        this.belgeNo = belgeNo;
     }
 
-    public String getBarkod() {
-        return barkod;
+    public Integer getFirmaNo() {
+        return firmaNo;
     }
 
-    public void setBarkod(String barkod) {
-        this.barkod = barkod;
+    public void setFirmaNo(Integer firmaNo) {
+        this.firmaNo = firmaNo;
     }
 
-    public Integer getGrupKodu() {
-        return grupKodu;
+    public Date getBelgeTarihi() {
+        return belgeTarihi;
     }
 
-    public void setGrupKodu(Integer grupKodu) {
-        this.grupKodu = grupKodu;
+    public void setBelgeTarihi(Date belgeTarihi) {
+        this.belgeTarihi = belgeTarihi;
     }
 
-    public Integer getDurum() {
-        return durum;
+    public Integer getTur() {
+        return tur;
     }
 
-    public void setDurum(Integer durum) {
-        this.durum = durum;
+    public void setTur(Integer tur) {
+        this.tur = tur;
     }
 
     public Date getOlusturmaTarihi() {

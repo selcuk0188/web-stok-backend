@@ -21,7 +21,7 @@ public class Kullanici {
     private String sifre;
 
     @Column(name = "durum")
-    private String durum;
+    private Integer durum;
 
     @Column(name = "tc_no")
     private String tcNo;
@@ -61,11 +61,11 @@ public class Kullanici {
         this.sifre = sifre;
     }
 
-    public String getDurum() {
+    public Integer getDurum() {
         return durum;
     }
 
-    public void setDurum(String durum) {
+    public void setDurum(Integer durum) {
         this.durum = durum;
     }
 
