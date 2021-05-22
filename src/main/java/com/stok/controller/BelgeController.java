@@ -14,9 +14,14 @@ public class BelgeController {
     @Autowired
     private BelgeService belgeService;
 
-    @RequestMapping(value = "/listele", method = RequestMethod.POST)
+    @RequestMapping(value = "/listele/belge-no", method = RequestMethod.POST)
     public BelgeListResponse getBelgeList(@RequestParam("belgeNo") Integer belgeNo) {
         return belgeService.getBelgeList(belgeNo);
+    }
+
+    @RequestMapping(value = "/listele", method = RequestMethod.POST)
+    public BelgeListResponse getBelgeList() {
+        return belgeService.getBelgeList();
     }
 
     @RequestMapping(value = "/kayit", method = RequestMethod.POST)
