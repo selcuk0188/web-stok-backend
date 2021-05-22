@@ -2,11 +2,13 @@ package com.stok.controller;
 
 
 import com.stok.model.*;
+import com.stok.service.BelgeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
-@RestController("/belge")
+@RestController
+@RequestMapping("/belge")
 public class BelgeController {
 
     @Autowired

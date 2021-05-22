@@ -7,15 +7,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
-@RestController("/stok-kart")
+@RestController
+@RequestMapping("/stok-kart")
 public class StokKartController {
 
     @Autowired
     private StokKartService stokKartService;
 
-    @RequestMapping(value = "/listele", method = RequestMethod.POST)
+    @RequestMapping(value = "/listele/stok-kodu", method = RequestMethod.POST)
     public StokKartListResponse getStokKartList(@RequestParam("stokKodu") Integer stokKodu) {
         return stokKartService.getStokKartList(stokKodu);
+    }
+
+    @RequestMapping(value = "/listele", method = RequestMethod.POST)
+    public StokKartListResponse getStokKartList() {
+        return stokKartService.getStokKartList();
     }
 
     @RequestMapping(value = "/kayit", method = RequestMethod.POST)

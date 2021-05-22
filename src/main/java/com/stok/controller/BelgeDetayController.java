@@ -2,19 +2,26 @@ package com.stok.controller;
 
 
 import com.stok.model.*;
+import com.stok.service.BelgeDetayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
-@RestController("/belge-detay")
+@RestController
+@RequestMapping("/belge-detay")
 public class BelgeDetayController {
 
     @Autowired
     private BelgeDetayService belgeDetayService;
 
-    @RequestMapping(value = "/listele", method = RequestMethod.POST)
+    @RequestMapping(value = "/listele/stok-kodu", method = RequestMethod.POST)
     public BelgeDetayListResponse getBelgeDetayList(@RequestParam("stokKodu") Integer stokKodu) {
         return belgeDetayService.getBelgeDetayList(stokKodu);
+    }
+
+    @RequestMapping(value = "/listele", method = RequestMethod.POST)
+    public BelgeDetayListResponse getBelgeDetayList() {
+        return belgeDetayService.getBelgeDetayList();
     }
 
     @RequestMapping(value = "/kayit", method = RequestMethod.POST)

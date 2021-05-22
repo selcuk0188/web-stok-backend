@@ -7,15 +7,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
-@RestController("/depo")
+@RestController
+@RequestMapping("/depo")
 public class DepoController {
 
     @Autowired
     private DepoService depoService;
 
-    @RequestMapping(value = "/listele", method = RequestMethod.POST)
+    @RequestMapping(value = "/listele/kullanici", method = RequestMethod.POST)
     public DepoListResponse getDepoList(@RequestParam("kullaniciId") Integer kullaniciId) {
         return depoService.getDepoList(kullaniciId);
+    }
+
+    @RequestMapping(value = "/listele", method = RequestMethod.POST)
+    public DepoListResponse getDepoList() {
+        return depoService.getDepoList();
     }
 
     @RequestMapping(value = "/kayit", method = RequestMethod.POST)
@@ -29,8 +35,8 @@ public class DepoController {
     }
 
     @RequestMapping(value = "/sil", method = RequestMethod.POST)
-    public DepoSilResponse delete(@RequestParam("depoId") Integer kullaniciId) {
-        return depoService.delete(kullaniciId);
+    public DepoSilResponse delete(@RequestParam("depoId") Integer depoId) {
+        return depoService.delete(depoId);
     }
 
 }

@@ -21,9 +21,6 @@ public class BelgeDetay {
     @Column(name = "adet")
     private Integer adet;
 
-    @Column(name = "birim_fiyat")
-    private Double birimFiyat;
-
     @Column(name = "birim_tutar")
     private Double birimTutar;
 
@@ -66,14 +63,6 @@ public class BelgeDetay {
 
     public void setAdet(Integer adet) {
         this.adet = adet;
-    }
-
-    public Double getBirimFiyat() {
-        return birimFiyat;
-    }
-
-    public void setBirimFiyat(Double birimFiyat) {
-        this.birimFiyat = birimFiyat;
     }
 
     public Double getBirimTutar() {

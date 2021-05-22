@@ -8,7 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
-@RestController("/kullanici")
+@RestController
+@RequestMapping("/kullanici")
 public class KullaniciController {
 
     @Autowired

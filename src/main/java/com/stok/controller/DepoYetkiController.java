@@ -7,15 +7,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
-@RestController("/depo-yetki")
+@RestController
+@RequestMapping("/depo-yetki")
 public class DepoYetkiController {
 
     @Autowired
     private DepoYetkiService depoYetkiService;
 
-    @RequestMapping(value = "/listele", method = RequestMethod.POST)
+    @RequestMapping(value = "/listele/depo-kodu", method = RequestMethod.POST)
     public DepoYetkiListResponse getDepoYetkiList(@RequestParam("depoKodu") Long depoKodu) {
         return depoYetkiService.getDepoYetkiList(depoKodu);
+    }
+
+    @RequestMapping(value = "/listele", method = RequestMethod.POST)
+    public DepoYetkiListResponse getDepoYetkiList() {
+        return depoYetkiService.getDepoYetkiList();
     }
 
     @RequestMapping(value = "/kayit", method = RequestMethod.POST)
@@ -29,7 +35,7 @@ public class DepoYetkiController {
     }
 
     @RequestMapping(value = "/sil", method = RequestMethod.POST)
-    public DepoYetkiSilResponse delete(@RequestParam("depoYetkiId") Long depoYetkiId) {
+    public DepoYetkiSilResponse delete(@RequestParam("depoYetkiId") Integer depoYetkiId) {
         return depoYetkiService.delete(depoYetkiId);
     }
 

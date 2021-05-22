@@ -1,5 +1,9 @@
-package com.stok.model;
+package com.stok.service;
 
+import com.stok.model.*;
+import org.springframework.stereotype.Service;
+
+@Service
 public class BelgeService {
     public BelgeListResponse getBelgeList(Integer belgeNo) {
         return null;
