@@ -20,8 +20,8 @@ public class DepoYetkiController {
     }
 
     @RequestMapping(value = "/listele", method = RequestMethod.POST)
-    public DepoYetkiListResponse getDepoYetkiList() {
-        return depoYetkiService.getDepoYetkiList();
+    public DepoYetkiListResponse getDepoYetkiAllList() {
+        return depoYetkiService.getDepoYetkiAllList();
     }
 
     @RequestMapping(value = "/kayit", method = RequestMethod.POST)

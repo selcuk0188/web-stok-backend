@@ -10,7 +10,7 @@ import com.stok.repository.KullaniciRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -35,7 +35,7 @@ public class DepoYetkiService {
         return response;
     }
 
-    public DepoYetkiListResponse getDepoYetkiList() {
+    public DepoYetkiListResponse getDepoYetkiAllList() {
         DepoYetkiListResponse response = new DepoYetkiListResponse();
         List<KullaniciDepoYetki> kullaniciDepoYetkiList = kullaniciDepoRepository.findAll();
         List<KullaniciDepoYetkiDto> kullaniciDepoYetkiDtoList = kullaniciDepoYetkiList.stream().map(e -> convert(e, false)).collect(Collectors.toList());
@@ -69,7 +69,7 @@ public class DepoYetkiService {
         KullaniciDepoYetki kullaniciDepoYetki = new KullaniciDepoYetki();
         kullaniciDepoYetki.setDepoKodu(request.getDepoKodu());
         kullaniciDepoYetki.setKullaniciId(request.getKullaniciId());
-        kullaniciDepoYetki.setOlusturmaTarihi(new Date());
+        kullaniciDepoYetki.setOlusturmaTarihi(new Date(System.currentTimeMillis()));
         kullaniciDepoRepository.save(kullaniciDepoYetki);
         return response;
     }
