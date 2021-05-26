@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DepoService {
@@ -51,6 +52,11 @@ public class DepoService {
     public DepoKayitResponse save(DepoRequest request) {
         DepoKayitResponse response = new DepoKayitResponse();
         response.setBasariliMi(true);
+        Optional<Depo> depoKodu = depoRepository.findByDepoKodu(request.getDepoKodu());
+        if (depoKodu.isPresent()) {
+            response.setBasariliMi(false);
+            return response;
+        }
         Depo depo = new Depo();
         depo.setDepoAdi(request.getDepoAdi());
         depo.setDepoKodu(request.getDepoKodu());

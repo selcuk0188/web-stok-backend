@@ -20,8 +20,8 @@ public class BelgeDetayController {
     }
 
     @RequestMapping(value = "/listele", method = RequestMethod.POST)
-    public BelgeDetayListResponse getBelgeDetayList() {
-        return belgeDetayService.getBelgeDetayList();
+    public BelgeDetayListResponse getBelgeDetayListByUserId(@RequestParam("kullaniciId") Integer kullaniciId) {
+        return belgeDetayService.getBelgeDetayListByUserId(kullaniciId);
     }
 
     @RequestMapping(value = "/kayit", method = RequestMethod.POST)

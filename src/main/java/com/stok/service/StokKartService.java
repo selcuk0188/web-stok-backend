@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StokKartService {
@@ -57,6 +58,11 @@ public class StokKartService {
     public StokKartKayitResponse save(StokKartRequest request) {
         StokKartKayitResponse response = new StokKartKayitResponse();
         response.setBasariliMi(true);
+        Optional<StokKart> o_stokKodu = stokKartRepository.findByStokKodu(request.getStokKodu());
+        if (o_stokKodu.isPresent()) {
+            response.setBasariliMi(false);
+            return response;
+        }
         StokKart stokKart = new StokKart();
         stokKart.setStokKodu(request.getStokKodu());
         stokKart.setStokAdi(request.getStokAdi());

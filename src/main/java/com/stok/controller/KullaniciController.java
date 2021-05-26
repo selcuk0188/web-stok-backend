@@ -31,8 +31,8 @@ public class KullaniciController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST) // Kullanicilarin login kontrolünü yapıp kullanici bilgilerini döner
-    public LoginKullaniciResponse kullaniciLogin(@RequestParam("tckn") String tckn, @RequestParam("sifre") String sifre) {
-        return kullaniciService.getKullanici(tckn, sifre);
+    public LoginKullaniciResponse kullaniciLogin(@RequestParam("kullaniciAdi") String kullaniciAdi, @RequestParam("sifre") String sifre) {
+        return kullaniciService.getKullanici(kullaniciAdi, sifre);
     }
 
     @RequestMapping(value = "/kayit", method = RequestMethod.POST)     // kullanicinin kayit edilmesini sağlar

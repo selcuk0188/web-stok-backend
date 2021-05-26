@@ -30,7 +30,7 @@ public class DepoYetkiService {
     public DepoYetkiListResponse getDepoYetkiList(Integer kullaniciId) {
         DepoYetkiListResponse response = new DepoYetkiListResponse();
         List<KullaniciDepoYetki> kullaniciDepoYetkiList = kullaniciDepoRepository.findByKullaniciId(kullaniciId);
-        List<KullaniciDepoYetkiDto> kullaniciDepoYetkiDtoList = kullaniciDepoYetkiList.stream().map(e -> convert(e)).collect(Collectors.toList());
+        List<KullaniciDepoYetkiDto> kullaniciDepoYetkiDtoList = kullaniciDepoYetkiList.stream().map(e -> convert(e, true)).collect(Collectors.toList());
         response.setKullaniciDepoYetkiList(kullaniciDepoYetkiDtoList);
         return response;
     }
@@ -38,27 +38,34 @@ public class DepoYetkiService {
     public DepoYetkiListResponse getDepoYetkiList() {
         DepoYetkiListResponse response = new DepoYetkiListResponse();
         List<KullaniciDepoYetki> kullaniciDepoYetkiList = kullaniciDepoRepository.findAll();
-        List<KullaniciDepoYetkiDto> kullaniciDepoYetkiDtoList = kullaniciDepoYetkiList.stream().map(e -> convert(e)).collect(Collectors.toList());
+        List<KullaniciDepoYetkiDto> kullaniciDepoYetkiDtoList = kullaniciDepoYetkiList.stream().map(e -> convert(e, false)).collect(Collectors.toList());
         response.setKullaniciDepoYetkiList(kullaniciDepoYetkiDtoList);
         return response;
     }
 
-    private KullaniciDepoYetkiDto convert(KullaniciDepoYetki request) {
+    private KullaniciDepoYetkiDto convert(KullaniciDepoYetki request, boolean isByKullaici) {
         KullaniciDepoYetkiDto response = new KullaniciDepoYetkiDto();
         response.setDepoKodu(request.getDepoKodu());
         response.setKullaniciId(request.getKullaniciId());
         response.setOlusturmaTarihi(request.getOlusturmaTarihi());
         response.setKullaniciId(request.getKullaniciId());
-        Optional<Kullanici> kullanici = kullaniciRepository.findById(request.getKullaniciId());
-        Depo depo = depoRepository.findByDepoKodu(request.getDepoKodu());
-        response.setKullaniciAdiSoyad(kullanici.get().getAdSoyad());
-        response.setDepoAdi(depo.getDepoAdi());
+        if (!isByKullaici) {
+            Optional<Kullanici> kullanici = kullaniciRepository.findById(request.getKullaniciId());
+            response.setKullaniciAdiSoyad(kullanici.get().getAdSoyad());
+        }
+        Optional<Depo> byDepoKodu = depoRepository.findByDepoKodu(request.getDepoKodu());
+        response.setDepoAdi(byDepoKodu.get().getDepoAdi());
         return response;
     }
 
     public DepoYetkiKayitResponse save(DepoYetkiRequest request) {
         DepoYetkiKayitResponse response = new DepoYetkiKayitResponse();
         response.setBasariliMi(true);
+        Optional<KullaniciDepoYetki> o_kullaniciDepoYetki = kullaniciDepoRepository.findByKullaniciIdAndDepoKodu(request.getKullaniciId(), request.getDepoKodu());
+        if (o_kullaniciDepoYetki.isPresent()) {
+            response.setBasariliMi(false);
+            return response;
+        }
         KullaniciDepoYetki kullaniciDepoYetki = new KullaniciDepoYetki();
         kullaniciDepoYetki.setDepoKodu(request.getDepoKodu());
         kullaniciDepoYetki.setKullaniciId(request.getKullaniciId());

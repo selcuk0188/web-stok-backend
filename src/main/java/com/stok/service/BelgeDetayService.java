@@ -1,13 +1,21 @@
 package com.stok.service;
 
+import com.stok.entities.Belge;
 import com.stok.entities.BelgeDetay;
+import com.stok.entities.Kullanici;
+import com.stok.entities.KullaniciDepoYetki;
 import com.stok.model.*;
 import com.stok.repository.BelgeDetayRepository;
+import com.stok.repository.BelgeRepository;
+import com.stok.repository.KullaniciDepoRepository;
+import com.stok.repository.KullaniciRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BelgeDetayService {
@@ -15,13 +23,36 @@ public class BelgeDetayService {
     @Autowired
     private BelgeDetayRepository belgeDetayRepository;
 
+
+    @Autowired
+    private BelgeRepository belgeRepository;
+
+    @Autowired
+    private KullaniciRepository kullaniciRepository;
+
+    @Autowired
+    private KullaniciDepoRepository kullaniciDepoRepository;
+
     public BelgeDetayListResponse getBelgeDetayList(Integer stokKodu) {
         return null;
     }
 
-    public BelgeDetayListResponse getBelgeDetayList() {
+    public BelgeDetayListResponse getBelgeDetayListByUserId(Integer kullaniciId) {
         BelgeDetayListResponse response = new BelgeDetayListResponse();
-        List<BelgeDetay> belgeDetayList = belgeDetayRepository.findAll();
+        Optional<Kullanici> kullanici = kullaniciRepository.findById(kullaniciId);
+        List<BelgeDetay> belgeDetayList = new ArrayList<>();
+        if (kullanici.get().getRolId() == 2) {
+            List<KullaniciDepoYetki> kullaniciDepoYetkiList = kullaniciDepoRepository.findByKullaniciId(kullaniciId);
+            for (KullaniciDepoYetki k : kullaniciDepoYetkiList) {
+                List<Belge> belgeList = belgeRepository.findByDepoKodu(k.getDepoKodu());
+                for (Belge b : belgeList) {
+                    List<BelgeDetay> belgeDetayList1 = belgeDetayRepository.findByBelgeNo(b.getBelgeNo());
+                    belgeDetayList.addAll(belgeDetayList1);
+                }
+            }
+        } else {
+            belgeDetayList = belgeDetayRepository.findAll();
+        }
         response.setBelgeDetayList(belgeDetayList);
         return response;
     }
@@ -37,6 +68,7 @@ public class BelgeDetayService {
             belgeDetay.setBirimTutar(dto.getBirimTutar());
             belgeDetay.setOlusturanKullanici(dto.getOlusturanKullanici());
             belgeDetay.setStokKodu(dto.getStokKodu());
+            belgeDetay.setBelgeNo(dto.getBelgeNo());
             belgeDetay.setToplamTutar(dto.getBirimTutar() * dto.getAdet());
             belgeDetay.setOlusturmaTarihi(new Date(System.currentTimeMillis()));
             belgeDetayRepository.save(belgeDetay);

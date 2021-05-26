@@ -41,9 +41,9 @@ public class KullaniciService {
     }
 
 
-    public LoginKullaniciResponse getKullanici(String tckn, String sifre) { // login sayfası için tckn ve şifre göre kullanıcı getirir
+    public LoginKullaniciResponse getKullanici(String kullaniciAdi, String sifre) { // login sayfası için tckn ve şifre göre kullanıcı getirir
         LoginKullaniciResponse response = new LoginKullaniciResponse();
-        Kullanici kullanici = kullaniciRepository.findByTcNoAndSifre(tckn, sifre);
+        Kullanici kullanici = kullaniciRepository.findByKullaniciAdiAndSifre(kullaniciAdi, sifre);
         if (kullanici == null) {
             response.setBasariliMi(false);
         }
@@ -53,6 +53,12 @@ public class KullaniciService {
 
     public KullaniciKayitResponse saveKullanici(Kullanici kullanici) { // kullanıcı kayıt eder
         KullaniciKayitResponse kullaniciKayitResponse = new KullaniciKayitResponse();
+        kullaniciKayitResponse.setBasariliMi(true);
+        Optional<Kullanici> o_kullanici = kullaniciRepository.findByKullaniciAdiOrTcNo(kullanici.getKullaniciAdi(), kullanici.getTcNo());
+        if (o_kullanici.isPresent()) {
+            kullaniciKayitResponse.setBasariliMi(false);
+            return kullaniciKayitResponse;
+        }
         kullaniciRepository.save(kullanici);
         return kullaniciKayitResponse;
     }
