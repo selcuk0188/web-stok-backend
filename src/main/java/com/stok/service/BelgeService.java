@@ -6,7 +6,7 @@ import com.stok.repository.BelgeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -35,7 +35,7 @@ public class BelgeService {
         belge.setFirmaNo(request.getFirmaNo());
         belge.setTur(request.getTur());
         belge.setBelgeTarihi(request.getBelgeTarihi());
-        belge.setOlusturmaTarihi(new Date());
+        belge.setOlusturmaTarihi(new Date(System.currentTimeMillis()));
         belgeRepository.save(belge);
         return response;
     }

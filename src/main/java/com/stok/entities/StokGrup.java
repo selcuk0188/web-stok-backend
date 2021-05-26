@@ -12,11 +12,11 @@ public class StokGrup {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "depo_adi")
-    private String depoAdi;
+    @Column(name = "grup_adi")
+    private String grupAdi;
 
     @Column(name = "grup_kodu")
-    private Integer depoKodu;
+    private Integer grupKodu;
 
     public Integer getId() {
         return id;
@@ -26,19 +26,19 @@ public class StokGrup {
         this.id = id;
     }
 
-    public String getDepoAdi() {
-        return depoAdi;
+    public String getGrupAdi() {
+        return grupAdi;
     }
 
-    public void setDepoAdi(String depoAdi) {
-        this.depoAdi = depoAdi;
+    public void setGrupAdi(String grupAdi) {
+        this.grupAdi = grupAdi;
     }
 
-    public Integer getDepoKodu() {
-        return depoKodu;
+    public Integer getGrupKodu() {
+        return grupKodu;
     }
 
-    public void setDepoKodu(Integer depoKodu) {
-        this.depoKodu = depoKodu;
+    public void setGrupKodu(Integer grupKodu) {
+        this.grupKodu = grupKodu;
     }
 }

@@ -1,17 +1,15 @@
 package com.stok.model;
 
-import com.stok.entities.KullaniciDepoYetki;
-
 import java.util.List;
 
 public class DepoYetkiListResponse {
-    private List<KullaniciDepoYetki> kullaniciDepoYetkiList;
+    private List<KullaniciDepoYetkiDto> kullaniciDepoYetkiList;
 
-    public List<KullaniciDepoYetki> getKullaniciDepoYetkiList() {
+    public List<KullaniciDepoYetkiDto> getKullaniciDepoYetkiList() {
         return kullaniciDepoYetkiList;
     }
 
-    public void setKullaniciDepoYetkiList(List<KullaniciDepoYetki> kullaniciDepoYetkiList) {
+    public void setKullaniciDepoYetkiList(List<KullaniciDepoYetkiDto> kullaniciDepoYetkiList) {
         this.kullaniciDepoYetkiList = kullaniciDepoYetkiList;
     }
 }

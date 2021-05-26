@@ -6,7 +6,8 @@ import com.stok.repository.DepoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,10 +20,20 @@ public class DepoService {
         return null;
     }
 
-    public DepoListResponse getDepoList() {
+    public DepoListResponse getDepoListByDurum(Integer durum) {
         DepoListResponse response = new DepoListResponse();
         List<Depo> depoList = depoRepository.findAll();
-        response.setDepoList(depoList);
+        List<Depo> depos = new ArrayList<>();
+        if (durum == 1) {
+            for (Depo depo : depoList) {
+                if (depo.getDurum() == 1)
+                    depos.add(depo);
+            }
+            response.setDepoList(depos);
+        } else {
+            response.setDepoList(depoList);
+        }
+
         return response;
     }
 
@@ -43,8 +54,8 @@ public class DepoService {
         Depo depo = new Depo();
         depo.setDepoAdi(request.getDepoAdi());
         depo.setDepoKodu(request.getDepoKodu());
-        depo.setDurum(request.getDurum());
-        depo.setOlusturmaTarihi(new Date());
+        depo.setDurum(request.getDepoDurum());
+        depo.setOlusturmaTarihi(new Date(System.currentTimeMillis()));
         depoRepository.save(depo);
         return response;
     }

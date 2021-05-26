@@ -6,7 +6,7 @@ import com.stok.repository.BelgeDetayRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -26,22 +26,25 @@ public class BelgeDetayService {
         return response;
     }
 
-    public BelgeDetayKayitResponse save(BelgeDetayRequest request) {
+    public BelgeDetayKayitResponse save(BelgeDetayListRequest request) {
         BelgeDetayKayitResponse response = new BelgeDetayKayitResponse();
         response.setBasariliMi(true);
-        BelgeDetay belgeDetay = new BelgeDetay();
-        belgeDetay.setAdet(request.getAdet());
-        belgeDetay.setBarkod(request.getBarkod());
-        belgeDetay.setBirimTutar(request.getBirimTutar());
-        belgeDetay.setOlusturanKullanici(request.getOlusturanKullanici());
-        belgeDetay.setStokKodu(request.getStokKodu());
-        belgeDetay.setToplamTutar(request.getBirimTutar() * request.getAdet());
-        belgeDetay.setOlusturmaTarihi(new Date());
-        belgeDetayRepository.save(belgeDetay);
+        List<BelgeDetayDto> belgeDetayList = request.getBelgeDetayList();
+        for (BelgeDetayDto dto : belgeDetayList) {
+            BelgeDetay belgeDetay = new BelgeDetay();
+            belgeDetay.setAdet(dto.getAdet());
+            belgeDetay.setBarkod(dto.getBarkod());
+            belgeDetay.setBirimTutar(dto.getBirimTutar());
+            belgeDetay.setOlusturanKullanici(dto.getOlusturanKullanici());
+            belgeDetay.setStokKodu(dto.getStokKodu());
+            belgeDetay.setToplamTutar(dto.getBirimTutar() * dto.getAdet());
+            belgeDetay.setOlusturmaTarihi(new Date(System.currentTimeMillis()));
+            belgeDetayRepository.save(belgeDetay);
+        }
         return response;
     }
 
-    public BelgeDetayGuncelleResponse update(BelgeDetayRequest request) {
+    public BelgeDetayGuncelleResponse update(BelgeDetayDto request) {
         return null;
     }
 

@@ -20,8 +20,8 @@ public class StokKartController {
     }
 
     @RequestMapping(value = "/listele", method = RequestMethod.POST)
-    public StokKartListResponse getStokKartList() {
-        return stokKartService.getStokKartList();
+    public StokKartListResponse getStokKartListByDurum(@RequestParam("durum") Integer durum) {
+        return stokKartService.getStokKartListByDurum(durum);
     }
 
     @RequestMapping(value = "/kayit", method = RequestMethod.POST)
@@ -37,6 +37,11 @@ public class StokKartController {
     @RequestMapping(value = "/sil", method = RequestMethod.POST)
     public StokKartSilResponse delete(@RequestParam("stokKartId") Integer stokKartId) {
         return stokKartService.delete(stokKartId);
+    }
+
+    @RequestMapping(value = "/grup/listele", method = RequestMethod.POST)
+    public StokGrupListResponse getStokGrupList() {
+        return stokKartService.getStokGrupList();
     }
 
 }

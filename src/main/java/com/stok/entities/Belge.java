@@ -2,7 +2,7 @@ package com.stok.entities;
 
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @Table(name = "belge")
@@ -22,7 +22,7 @@ public class Belge {
     private Integer firmaNo;
 
     @Column(name = "belge_tarihi")
-    private Date belgeTarihi;
+    private String belgeTarihi;
 
     @Column(name = "tur")
     private Integer tur;
@@ -62,11 +62,11 @@ public class Belge {
         this.firmaNo = firmaNo;
     }
 
-    public Date getBelgeTarihi() {
+    public String getBelgeTarihi() {
         return belgeTarihi;
     }
 
-    public void setBelgeTarihi(Date belgeTarihi) {
+    public void setBelgeTarihi(String belgeTarihi) {
         this.belgeTarihi = belgeTarihi;
     }
 

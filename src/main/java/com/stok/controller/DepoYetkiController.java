@@ -14,9 +14,9 @@ public class DepoYetkiController {
     @Autowired
     private DepoYetkiService depoYetkiService;
 
-    @RequestMapping(value = "/listele/depo-kodu", method = RequestMethod.POST)
-    public DepoYetkiListResponse getDepoYetkiList(@RequestParam("depoKodu") Long depoKodu) {
-        return depoYetkiService.getDepoYetkiList(depoKodu);
+    @RequestMapping(value = "/listele/kullanici", method = RequestMethod.POST)
+    public DepoYetkiListResponse getDepoYetkiList(@RequestParam("kullaniciId") Integer kullaniciId) {
+        return depoYetkiService.getDepoYetkiList(kullaniciId);
     }
 
     @RequestMapping(value = "/listele", method = RequestMethod.POST)

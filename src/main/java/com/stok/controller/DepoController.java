@@ -20,8 +20,8 @@ public class DepoController {
     }
 
     @RequestMapping(value = "/listele", method = RequestMethod.POST)
-    public DepoListResponse getDepoList() {
-        return depoService.getDepoList();
+    public DepoListResponse getDepoListByDurum(@RequestParam("durum") Integer durum) {
+        return depoService.getDepoListByDurum(durum);
     }
 
     @RequestMapping(value = "/kayit", method = RequestMethod.POST)

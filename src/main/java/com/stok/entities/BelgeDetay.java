@@ -2,7 +2,7 @@ package com.stok.entities;
 
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @Table(name = "belgedetay")
@@ -12,11 +12,14 @@ public class BelgeDetay {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "belge_no")
+    private Integer belgeNo;
+
     @Column(name = "stok_kodu")
     private Integer stokKodu;
 
     @Column(name = "barkod")
-    private Integer barkod;
+    private String barkod;
 
     @Column(name = "adet")
     private Integer adet;
@@ -41,6 +44,14 @@ public class BelgeDetay {
         this.id = id;
     }
 
+    public Integer getBelgeNo() {
+        return belgeNo;
+    }
+
+    public void setBelgeNo(Integer belgeNo) {
+        this.belgeNo = belgeNo;
+    }
+
     public Integer getStokKodu() {
         return stokKodu;
     }
@@ -49,11 +60,11 @@ public class BelgeDetay {
         this.stokKodu = stokKodu;
     }
 
-    public Integer getBarkod() {
+    public String getBarkod() {
         return barkod;
     }
 
-    public void setBarkod(Integer barkod) {
+    public void setBarkod(String barkod) {
         this.barkod = barkod;
     }
 

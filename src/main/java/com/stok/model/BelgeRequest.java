@@ -1,13 +1,11 @@
 package com.stok.model;
 
-import java.util.Date;
-
 public class BelgeRequest {
 
     private Integer depoKodu;
     private Integer belgeNo;
     private Integer firmaNo;
-    private Date belgeTarihi;
+    private String belgeTarihi;
     private Integer tur;
 
     public Integer getDepoKodu() {
@@ -34,11 +32,11 @@ public class BelgeRequest {
         this.firmaNo = firmaNo;
     }
 
-    public Date getBelgeTarihi() {
+    public String getBelgeTarihi() {
         return belgeTarihi;
     }
 
-    public void setBelgeTarihi(Date belgeTarihi) {
+    public void setBelgeTarihi(String belgeTarihi) {
         this.belgeTarihi = belgeTarihi;
     }
 

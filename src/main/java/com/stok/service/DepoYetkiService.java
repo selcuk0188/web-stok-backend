@@ -1,13 +1,19 @@
 package com.stok.service;
 
+import com.stok.entities.Depo;
+import com.stok.entities.Kullanici;
 import com.stok.entities.KullaniciDepoYetki;
 import com.stok.model.*;
+import com.stok.repository.DepoRepository;
 import com.stok.repository.KullaniciDepoRepository;
+import com.stok.repository.KullaniciRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class DepoYetkiService {
@@ -15,14 +21,38 @@ public class DepoYetkiService {
     @Autowired
     private KullaniciDepoRepository kullaniciDepoRepository;
 
-    public DepoYetkiListResponse getDepoYetkiList(Long depoKodu) {
-        return null;
+    @Autowired
+    private KullaniciRepository kullaniciRepository;
+
+    @Autowired
+    private DepoRepository depoRepository;
+
+    public DepoYetkiListResponse getDepoYetkiList(Integer kullaniciId) {
+        DepoYetkiListResponse response = new DepoYetkiListResponse();
+        List<KullaniciDepoYetki> kullaniciDepoYetkiList = kullaniciDepoRepository.findByKullaniciId(kullaniciId);
+        List<KullaniciDepoYetkiDto> kullaniciDepoYetkiDtoList = kullaniciDepoYetkiList.stream().map(e -> convert(e)).collect(Collectors.toList());
+        response.setKullaniciDepoYetkiList(kullaniciDepoYetkiDtoList);
+        return response;
     }
 
     public DepoYetkiListResponse getDepoYetkiList() {
         DepoYetkiListResponse response = new DepoYetkiListResponse();
         List<KullaniciDepoYetki> kullaniciDepoYetkiList = kullaniciDepoRepository.findAll();
-        response.setKullaniciDepoYetkiList(kullaniciDepoYetkiList);
+        List<KullaniciDepoYetkiDto> kullaniciDepoYetkiDtoList = kullaniciDepoYetkiList.stream().map(e -> convert(e)).collect(Collectors.toList());
+        response.setKullaniciDepoYetkiList(kullaniciDepoYetkiDtoList);
+        return response;
+    }
+
+    private KullaniciDepoYetkiDto convert(KullaniciDepoYetki request) {
+        KullaniciDepoYetkiDto response = new KullaniciDepoYetkiDto();
+        response.setDepoKodu(request.getDepoKodu());
+        response.setKullaniciId(request.getKullaniciId());
+        response.setOlusturmaTarihi(request.getOlusturmaTarihi());
+        response.setKullaniciId(request.getKullaniciId());
+        Optional<Kullanici> kullanici = kullaniciRepository.findById(request.getKullaniciId());
+        Depo depo = depoRepository.findByDepoKodu(request.getDepoKodu());
+        response.setKullaniciAdiSoyad(kullanici.get().getAdSoyad());
+        response.setDepoAdi(depo.getDepoAdi());
         return response;
     }
 

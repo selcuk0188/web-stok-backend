@@ -25,12 +25,12 @@ public class BelgeDetayController {
     }
 
     @RequestMapping(value = "/kayit", method = RequestMethod.POST)
-    public BelgeDetayKayitResponse save(@RequestBody BelgeDetayRequest request) {
+    public BelgeDetayKayitResponse save(@RequestBody BelgeDetayListRequest request) {
         return belgeDetayService.save(request);
     }
 
     @RequestMapping(value = "/guncelle", method = RequestMethod.POST)
-    public BelgeDetayGuncelleResponse update(@RequestBody BelgeDetayRequest request) {
+    public BelgeDetayGuncelleResponse update(@RequestBody BelgeDetayDto request) {
         return belgeDetayService.update(request);
     }
 

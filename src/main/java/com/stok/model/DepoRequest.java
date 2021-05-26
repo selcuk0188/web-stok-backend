@@ -6,7 +6,7 @@ public class DepoRequest {
 
     private String depoAdi;
     private Integer depoKodu;
-    private Integer durum;
+    private Integer depoDurum;
     private Date olusturmaTarihi;
 
     public String getDepoAdi() {
@@ -25,12 +25,12 @@ public class DepoRequest {
         this.depoKodu = depoKodu;
     }
 
-    public Integer getDurum() {
-        return durum;
+    public Integer getDepoDurum() {
+        return depoDurum;
     }
 
-    public void setDurum(Integer durum) {
-        this.durum = durum;
+    public void setDepoDurum(Integer depoDurum) {
+        this.depoDurum = depoDurum;
     }
 
     public Date getOlusturmaTarihi() {
