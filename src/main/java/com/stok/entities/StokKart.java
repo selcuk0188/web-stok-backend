@@ -13,7 +13,7 @@ public class StokKart {
     private Integer id;
 
     @Column(name = "stok_kodu")
-    private String stokKodu;
+    private Integer stokKodu;
 
     @Column(name = "stok_adi")
     private String stokAdi;
@@ -38,11 +38,11 @@ public class StokKart {
         this.id = id;
     }
 
-    public String getStokKodu() {
+    public Integer getStokKodu() {
         return stokKodu;
     }
 
-    public void setStokKodu(String stokKodu) {
+    public void setStokKodu(Integer stokKodu) {
         this.stokKodu = stokKodu;
     }
 

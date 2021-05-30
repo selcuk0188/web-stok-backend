@@ -33,6 +33,9 @@ public class BelgeDetayService {
     @Autowired
     private KullaniciDepoRepository kullaniciDepoRepository;
 
+    @Autowired
+    private DepoService depoService;
+
     public BelgeDetayListResponse getBelgeDetayList(Integer stokKodu) {
         return null;
     }
@@ -74,6 +77,16 @@ public class BelgeDetayService {
             belgeDetayRepository.save(belgeDetay);
         }
         return response;
+    }
+
+    public GirisKontrolResponse validate(GirisKontrolRequest request) {
+        Optional<Belge> belge = belgeRepository.findByBelgeNo(request.getBelgeNo());
+        DepoStokListResponse depoStokList = depoService.getDepoStokList(request.getKullaniciId());
+        List<DepoStokDto> depoStokDtoList = depoStokList.getDepoStokDtoList();
+        for (DepoStokDto dto : depoStokDtoList) {
+
+        }
+        return null;
     }
 
     public BelgeDetayGuncelleResponse update(BelgeDetayDto request) {

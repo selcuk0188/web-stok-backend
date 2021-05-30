@@ -2,17 +2,17 @@ package com.stok.model;
 
 public class StokKartRequest {
 
-    private String stokKodu;
+    private Integer stokKodu;
     private String stokAdi;
     private String barkod;
     private Integer grupKodu;
     private Integer durum;
 
-    public String getStokKodu() {
+    public Integer getStokKodu() {
         return stokKodu;
     }
 
-    public void setStokKodu(String stokKodu) {
+    public void setStokKodu(Integer stokKodu) {
         this.stokKodu = stokKodu;
     }
 

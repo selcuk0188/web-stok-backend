@@ -39,4 +39,9 @@ public class DepoController {
         return depoService.delete(depoId);
     }
 
+    @RequestMapping(value = "/listele/stok/kullanici", method = RequestMethod.POST)
+    public DepoStokListResponse getDepoStokList(@RequestParam("kullaniciId") Integer kullaniciId) {
+        return depoService.getDepoStokList(kullaniciId);
+    }
+
 }

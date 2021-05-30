@@ -28,6 +28,14 @@ public class BelgeService {
     private KullaniciRepository kullaniciRepository;
 
 
+    public BelgeResponse getBelge(Integer belgeNo) {
+        BelgeResponse response = new BelgeResponse();
+        Optional<Belge> belge = belgeRepository.findByBelgeNo(belgeNo);
+        if (belge.isPresent())
+            response.setBelge(belge.get());
+        return response;
+    }
+
     public BelgeListResponse getBelgeListByUserId(Integer kullaniciId) {
         BelgeListResponse response = new BelgeListResponse();
         List<Belge> belgeList = new ArrayList<>();

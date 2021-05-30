@@ -29,6 +29,12 @@ public class BelgeDetayController {
         return belgeDetayService.save(request);
     }
 
+    @RequestMapping(value = "/giris-kontrol", method = RequestMethod.POST)
+    public GirisKontrolResponse girisKontrol(@RequestBody GirisKontrolRequest request) {
+        return belgeDetayService.validate(request);
+    }
+
+
     @RequestMapping(value = "/guncelle", method = RequestMethod.POST)
     public BelgeDetayGuncelleResponse update(@RequestBody BelgeDetayDto request) {
         return belgeDetayService.update(request);

@@ -19,6 +19,11 @@ public class BelgeController {
         return belgeService.getBelgeListByUserId(kullaniciId);
     }
 
+    @RequestMapping(value = "/listele/belge-no", method = RequestMethod.POST)
+    public BelgeResponse getBelge(@RequestParam("belgeNo") Integer belgeNo) {
+        return belgeService.getBelge(belgeNo);
+    }
+
     @RequestMapping(value = "/kayit", method = RequestMethod.POST)
     public BelgeKayitResponse save(@RequestBody BelgeRequest request) {
         return belgeService.save(request);

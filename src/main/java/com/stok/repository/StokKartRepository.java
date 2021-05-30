@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface StokKartRepository extends JpaRepository<StokKart, Integer> {
 
-    Optional<StokKart> findByStokKodu(String stokKodu);
+    Optional<StokKart> findByStokKodu(Integer stokKodu);
 }
